@@ -9,16 +9,16 @@
 - [x] Criar pasta docs
 - [ ] Configurar Docker
 - [ ] Configurar MySQL
-- [ ] Configurar application.yml
+- [x] Configurar application.yml
 
 ---
 
 ## Git e versionamento
-- [ ] Fazer primeiro commit
+- [x] Fazer primeiro commit
 - [ ] Criar branch develop
 - [ ] Criar primeira feature branch
-- [ ] Usar commits semânticos
-- [ ] Subir projeto no GitHub
+- [x] Usar commits semânticos
+- [x] Subir projeto no GitHub
 
 ---
 
@@ -58,10 +58,10 @@
 - [ ] Criar DTO de request
 - [ ] Criar DTO de response
 - [ ] Criar use case de cadastro
-- [ ] Criar controller
+- [x] Criar controller
 - [ ] Criar endpoint POST /imoveis
 - [ ] Criar endpoint GET /imoveis
-- [ ] Testar no Insomnia
+- [x] Testar no Insomnia
 
 ---
 
