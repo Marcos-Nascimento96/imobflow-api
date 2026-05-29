@@ -1,4 +1,4 @@
-package com.marcos.imobflow.controller;
+package com.marcos.imobflow.adapters.in;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
