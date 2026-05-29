@@ -75,7 +75,7 @@
 ---
 
 ## Segurança
-- [ ] Estudar Spring Security
+- [x] Estudar Spring Security
 - [ ] Criar autenticação futuramente
 - [ ] Criar login com JWT
 - [ ] Definir perfis de usuário
