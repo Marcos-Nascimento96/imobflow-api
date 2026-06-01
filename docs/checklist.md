@@ -60,7 +60,7 @@
 - [x] Criar use case de cadastro
 - [x] Criar controller
 - [x] Criar endpoint POST /imoveis
-- [ ] Criar endpoint GET /imoveis
+- [x] Criar endpoint GET /imoveis
 - [x] Testar no Insomnia
 
 ---
