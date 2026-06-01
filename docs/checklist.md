@@ -43,23 +43,23 @@
 ---
 
 ## Arquitetura
-- [ ] Criar pacote domain
-- [ ] Criar pacote application
-- [ ] Criar pacote infrastructure
-- [ ] Criar pacote adapters
+- [x] Criar pacote domain
+- [x] Criar pacote application
+- [x] Criar pacote infrastructure
+- [x] Criar pacote adapters
 - [ ] Documentar arquitetura hexagonal
 - [ ] Documentar arquitetura limpa
-- [ ] Separar regras de negócio do framework
+- [x] Separar regras de negócio do framework
 
 ---
 
 ## Primeira feature - Imóvel
-- [ ] Criar entidade Imovel
-- [ ] Criar DTO de request
-- [ ] Criar DTO de response
-- [ ] Criar use case de cadastro
+- [x] Criar entidade Imovel
+- [x] Criar DTO de request
+- [x] Criar DTO de response
+- [x] Criar use case de cadastro
 - [x] Criar controller
-- [ ] Criar endpoint POST /imoveis
+- [x] Criar endpoint POST /imoveis
 - [ ] Criar endpoint GET /imoveis
 - [x] Testar no Insomnia
 
@@ -84,9 +84,9 @@
 ---
 
 ## DDD
-- [ ] Definir entidades de domínio
+- [x] Definir entidades de domínio
 - [ ] Criar Value Objects
-- [ ] Criar regras de negócio no domínio
+- [x] Criar regras de negócio no domínio
 - [ ] Definir contratos de repositório
 - [ ] Documentar decisões de domínio
 
