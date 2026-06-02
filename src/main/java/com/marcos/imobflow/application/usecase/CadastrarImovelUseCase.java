@@ -19,8 +19,17 @@ public class CadastrarImovelUseCase {
         Imovel imovel = new Imovel(
                 null,
                 request.getTitulo(),
+                request.getDescricao(),
+                request.getCidade(),
+                request.getBairro(),
                 request.getEndereco(),
-                request.getValor()
+                request.getValor(),
+                request.getTipoNegociacao(),
+                request.getTipoImovel(),
+                request.getQuartos(),
+                request.getBanheiros(),
+                request.getVagasGaragem(),
+                request.getAreaM2()
         );
 
         imovel = imovelRepository.salvar(imovel);
@@ -28,8 +37,17 @@ public class CadastrarImovelUseCase {
         return new CreateImovelResponse(
                 imovel.getId(),
                 imovel.getTitulo(),
+                imovel.getDescricao(),
+                imovel.getCidade(),
+                imovel.getBairro(),
                 imovel.getEndereco(),
-                imovel.getValor()
+                imovel.getValor(),
+                imovel.getTipoNegociacao(),
+                imovel.getTipoImovel(),
+                imovel.getQuartos(),
+                imovel.getBanheiros(),
+                imovel.getVagasGaragem(),
+                imovel.getAreaM2()
         );
     }
 }

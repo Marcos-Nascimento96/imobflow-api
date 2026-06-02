@@ -33,10 +33,10 @@
 ---
 
 ## Banco de dados
-- [ ] Modelar tabela de imóveis
+- [x] Modelar tabela de imóveis
 - [ ] Configurar conexão com MySQL
 - [ ] Criar primeira entidade JPA
-- [ ] Criar repository
+- [x] Criar repository
 - [ ] Testar persistência no banco
 - [ ] Estudar migrations futuramente
 
