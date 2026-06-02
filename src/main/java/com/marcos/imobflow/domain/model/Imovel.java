@@ -1,7 +1,17 @@
 package com.marcos.imobflow.domain.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "imoveis")
 public class Imovel {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String titulo;
     private String descricao;
@@ -16,7 +26,11 @@ public class Imovel {
     private Integer vagasGaragem;
     private Double areaM2;
 
+    public Imovel() {
+    }
+
     public Imovel(Long id,
+
                   String titulo,
                   String descricao,
                   String cidade,
