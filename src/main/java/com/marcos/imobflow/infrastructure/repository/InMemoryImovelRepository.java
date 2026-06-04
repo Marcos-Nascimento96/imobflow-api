@@ -22,4 +22,12 @@ public class InMemoryImovelRepository implements ImovelRepository {
     public List<Imovel> listar() {
         return imoveis;
     }
+
+    @Override
+    public Imovel buscarPorId(Long id) {
+        return imoveis.stream()
+                .filter(imovel -> imovel.getId() != null && imovel.getId().equals(id))
+                .findFirst()
+                .orElse(null);
+    }
 }
