@@ -26,4 +26,9 @@ public class MySqlImovelRepository implements ImovelRepository {
     public List<Imovel> listar() {
         return jpaImovelRepository.findAll();
     }
+
+    @Override
+    public Imovel buscarPorId(Long id) {
+        return jpaImovelRepository.findById(id).orElse(null);
+    }
 }

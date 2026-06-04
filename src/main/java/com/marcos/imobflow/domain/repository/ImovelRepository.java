@@ -9,4 +9,6 @@ public interface ImovelRepository {
     Imovel salvar(Imovel imovel);
 
     List<Imovel> listar();
+
+    Imovel buscarPorId(Long id);
 }
