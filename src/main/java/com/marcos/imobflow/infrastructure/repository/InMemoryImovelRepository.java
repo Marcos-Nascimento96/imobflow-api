@@ -30,4 +30,9 @@ public class InMemoryImovelRepository implements ImovelRepository {
                 .findFirst()
                 .orElse(null);
     }
+
+    @Override
+    public void deletarPorId(Long id) {
+        imoveis.removeIf(imovel -> imovel.getId() != null && imovel.getId().equals(id));
+    }
 }

@@ -6,6 +6,8 @@ import com.marcos.imobflow.application.usecase.CadastrarImovelUseCase;
 import com.marcos.imobflow.application.usecase.ListarImoveisUseCase;
 import com.marcos.imobflow.domain.model.Imovel;
 import com.marcos.imobflow.application.usecase.BuscarImovelPorIdUseCase;
+import com.marcos.imobflow.application.usecase.DeletarImovelPorIdUseCase;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,15 +24,18 @@ public class ImovelController {
     private final CadastrarImovelUseCase cadastrarImovelUseCase;
     private final ListarImoveisUseCase listarImoveisUseCase;
     private final BuscarImovelPorIdUseCase buscarImovelPorIdUseCase;
+    private final DeletarImovelPorIdUseCase deletarImovelPorIdUseCase;
 
     public ImovelController(
             CadastrarImovelUseCase cadastrarImovelUseCase,
             ListarImoveisUseCase listarImoveisUseCase,
-            BuscarImovelPorIdUseCase buscarImovelPorIdUseCase
+            BuscarImovelPorIdUseCase buscarImovelPorIdUseCase,
+            DeletarImovelPorIdUseCase deletarImovelPorIdUseCase
     ) {
         this.cadastrarImovelUseCase = cadastrarImovelUseCase;
         this.listarImoveisUseCase = listarImoveisUseCase;
         this.buscarImovelPorIdUseCase = buscarImovelPorIdUseCase;
+        this.deletarImovelPorIdUseCase = deletarImovelPorIdUseCase;
     }
 
     @PostMapping
@@ -47,4 +52,10 @@ public class ImovelController {
     public Imovel buscarPorId(@PathVariable Long id) {
         return buscarImovelPorIdUseCase.executar(id);
     }
+
+    @DeleteMapping("/{id}")
+    public void deletarPorId(@PathVariable Long id) {
+        deletarImovelPorIdUseCase.executar(id);
+    }
 }
+

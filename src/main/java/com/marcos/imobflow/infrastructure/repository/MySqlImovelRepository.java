@@ -31,4 +31,9 @@ public class MySqlImovelRepository implements ImovelRepository {
     public Imovel buscarPorId(Long id) {
         return jpaImovelRepository.findById(id).orElse(null);
     }
+
+    @Override
+    public void deletarPorId(Long id) {
+        jpaImovelRepository.deleteById(id);
+    }
 }

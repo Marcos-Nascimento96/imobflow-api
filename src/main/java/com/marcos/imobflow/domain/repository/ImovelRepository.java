@@ -11,4 +11,6 @@ public interface ImovelRepository {
     List<Imovel> listar();
 
     Imovel buscarPorId(Long id);
+
+    void deletarPorId(Long id);
 }
