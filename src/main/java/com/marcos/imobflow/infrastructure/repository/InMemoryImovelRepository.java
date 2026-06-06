@@ -35,4 +35,10 @@ public class InMemoryImovelRepository implements ImovelRepository {
     public void deletarPorId(Long id) {
         imoveis.removeIf(imovel -> imovel.getId() != null && imovel.getId().equals(id));
     }
+    @Override
+    public Imovel atualizar(Imovel imovel) {
+        deletarPorId(imovel.getId());
+        imoveis.add(imovel);
+        return imovel;
+    }
 }
