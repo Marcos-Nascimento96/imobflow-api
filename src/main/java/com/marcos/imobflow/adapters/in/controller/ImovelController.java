@@ -7,6 +7,8 @@ import com.marcos.imobflow.application.usecase.ListarImoveisUseCase;
 import com.marcos.imobflow.domain.model.Imovel;
 import com.marcos.imobflow.application.usecase.BuscarImovelPorIdUseCase;
 import com.marcos.imobflow.application.usecase.DeletarImovelPorIdUseCase;
+import com.marcos.imobflow.application.usecase.AtualizarImovelPorIdUseCase;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,18 +27,21 @@ public class ImovelController {
     private final ListarImoveisUseCase listarImoveisUseCase;
     private final BuscarImovelPorIdUseCase buscarImovelPorIdUseCase;
     private final DeletarImovelPorIdUseCase deletarImovelPorIdUseCase;
+    private final AtualizarImovelPorIdUseCase atualizarImovelPorIdUseCase;
 
     public ImovelController(
             CadastrarImovelUseCase cadastrarImovelUseCase,
             ListarImoveisUseCase listarImoveisUseCase,
             BuscarImovelPorIdUseCase buscarImovelPorIdUseCase,
-            DeletarImovelPorIdUseCase deletarImovelPorIdUseCase
+            DeletarImovelPorIdUseCase deletarImovelPorIdUseCase,
+            AtualizarImovelPorIdUseCase atualizarImovelPorIdUseCase
     ) {
         this.cadastrarImovelUseCase = cadastrarImovelUseCase;
         this.listarImoveisUseCase = listarImoveisUseCase;
         this.buscarImovelPorIdUseCase = buscarImovelPorIdUseCase;
         this.deletarImovelPorIdUseCase = deletarImovelPorIdUseCase;
-    }
+        this.atualizarImovelPorIdUseCase = atualizarImovelPorIdUseCase;
+        }
 
     @PostMapping
     public CreateImovelResponse cadastrar(@RequestBody CreateImovelRequest request) {
@@ -57,5 +62,11 @@ public class ImovelController {
     public void deletarPorId(@PathVariable Long id) {
         deletarImovelPorIdUseCase.executar(id);
     }
+
+    @PutMapping("/{id}")
+    public CreateImovelResponse atualizarPorId(@PathVariable Long id, @RequestBody CreateImovelRequest request) {
+        return atualizarImovelPorIdUseCase.executar(id, request);
+    }
+
 }
 

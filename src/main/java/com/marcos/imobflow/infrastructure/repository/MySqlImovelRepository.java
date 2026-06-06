@@ -36,4 +36,9 @@ public class MySqlImovelRepository implements ImovelRepository {
     public void deletarPorId(Long id) {
         jpaImovelRepository.deleteById(id);
     }
+
+    @Override
+    public Imovel atualizar(Imovel imovel) {
+        return jpaImovelRepository.save(imovel);
+    }
 }
