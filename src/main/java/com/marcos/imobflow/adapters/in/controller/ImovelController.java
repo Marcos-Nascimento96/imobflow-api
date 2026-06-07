@@ -8,6 +8,11 @@ import com.marcos.imobflow.domain.model.Imovel;
 import com.marcos.imobflow.application.usecase.BuscarImovelPorIdUseCase;
 import com.marcos.imobflow.application.usecase.DeletarImovelPorIdUseCase;
 import com.marcos.imobflow.application.usecase.AtualizarImovelPorIdUseCase;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,7 +49,7 @@ public class ImovelController {
         }
 
     @PostMapping
-    public CreateImovelResponse cadastrar(@RequestBody CreateImovelRequest request) {
+    public CreateImovelResponse cadastrar(@Valid @RequestBody CreateImovelRequest request) {
         return cadastrarImovelUseCase.executar(request);
     }
 
@@ -64,7 +69,7 @@ public class ImovelController {
     }
 
     @PutMapping("/{id}")
-    public CreateImovelResponse atualizarPorId(@PathVariable Long id, @RequestBody CreateImovelRequest request) {
+    public CreateImovelResponse atualizarPorId(@PathVariable Long id,@Valid @RequestBody CreateImovelRequest request) {
         return atualizarImovelPorIdUseCase.executar(id, request);
     }
 
