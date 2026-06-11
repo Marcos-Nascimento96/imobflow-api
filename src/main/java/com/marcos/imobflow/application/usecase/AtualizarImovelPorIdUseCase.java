@@ -5,6 +5,7 @@ import com.marcos.imobflow.application.dto.CreateImovelResponse;
 import com.marcos.imobflow.domain.model.Imovel;
 import com.marcos.imobflow.domain.repository.ImovelRepository;
 import org.springframework.stereotype.Service;
+import com.marcos.imobflow.application.exception.ImovelNotFoundException;
 
 @Service
 public class AtualizarImovelPorIdUseCase {
@@ -19,7 +20,7 @@ public class AtualizarImovelPorIdUseCase {
         Imovel imovelExistente = imovelRepository.buscarPorId(id);
 
         if (imovelExistente == null) {
-            return null;
+            throw new ImovelNotFoundException();
         }
 
         Imovel imovelAtualizado = new Imovel(

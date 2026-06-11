@@ -1,5 +1,6 @@
 package com.marcos.imobflow.adapters.in.exception;
 
+import com.marcos.imobflow.application.exception.ImovelNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -26,5 +27,15 @@ public class GlobalExceptionHandler {
         );
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    }
+
+    @ExceptionHandler(ImovelNotFoundException.class)
+    public ResponseEntity<SimpleErrorResponse> handleImovelNotFound(ImovelNotFoundException ex) {
+        SimpleErrorResponse response = new SimpleErrorResponse(
+                404,
+                ex.getMessage()
+        );
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
 }
