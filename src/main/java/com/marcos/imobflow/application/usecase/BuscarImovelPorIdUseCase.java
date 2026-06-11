@@ -1,5 +1,6 @@
 package com.marcos.imobflow.application.usecase;
 
+import com.marcos.imobflow.application.exception.ImovelNotFoundException;
 import com.marcos.imobflow.domain.model.Imovel;
 import com.marcos.imobflow.domain.repository.ImovelRepository;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,12 @@ public class BuscarImovelPorIdUseCase {
     }
 
     public Imovel executar(Long id) {
-        return imovelRepository.buscarPorId(id);
+        Imovel imovel = imovelRepository.buscarPorId(id);
+
+        if (imovel == null) {
+            throw new ImovelNotFoundException();
+        }
+
+        return imovel;
     }
 }
