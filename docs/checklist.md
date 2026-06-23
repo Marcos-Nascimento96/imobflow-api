@@ -7,16 +7,16 @@
 - [x] Criar repositório no GitHub
 - [x] Criar README inicial
 - [x] Criar pasta docs
-- [ ] Configurar Docker
-- [ ] Configurar MySQL
+- [x] Configurar Docker
+- [x] Configurar MySQL
 - [x] Configurar application.yml
 
 ---
 
 ## Git e versionamento
 - [x] Fazer primeiro commit
-- [ ] Criar branch develop
-- [ ] Criar primeira feature branch
+- [x] Criar branch develop
+- [x] Criar primeira feature branch
 - [x] Usar commits semânticos
 - [x] Subir projeto no GitHub
 
@@ -34,10 +34,10 @@
 
 ## Banco de dados
 - [x] Modelar tabela de imóveis
-- [ ] Configurar conexão com MySQL
-- [ ] Criar primeira entidade JPA
+- [x] Configurar conexão com MySQL
+- [x] Criar primeira entidade JPA
 - [x] Criar repository
-- [ ] Testar persistência no banco
+- [x] Testar persistência no banco
 - [ ] Estudar migrations futuramente
 
 ---
@@ -66,8 +66,8 @@
 ---
 
 ## Testes
-- [ ] Criar primeiro teste unitário com JUnit
-- [ ] Criar teste com Mockito
+- [x] Criar primeiro teste unitário com JUnit
+- [x] Criar teste com Mockito
 - [ ] Criar teste de integração
 - [ ] Configurar cobertura com Jacoco
 - [ ] Planejar testes E2E com Cypress futuramente
@@ -87,7 +87,7 @@
 - [x] Definir entidades de domínio
 - [ ] Criar Value Objects
 - [x] Criar regras de negócio no domínio
-- [ ] Definir contratos de repositório
+- [x] Definir contratos de repositório
 - [ ] Documentar decisões de domínio
 
 ---
@@ -120,7 +120,7 @@
 ---
 
 ## Microsserviços
-- [ ] Manter projeto inicialmente como monólito modular
+- [x] Manter projeto inicialmente como monólito modular
 - [ ] Identificar possíveis módulos
 - [ ] Estudar separação em serviços
 - [ ] Planejar futuro serviço de notificações
