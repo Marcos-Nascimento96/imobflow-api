@@ -58,7 +58,7 @@ public class ListarImoveisUseCaseTest {
                 .thenReturn(List.of(imovel1, imovel2));
 
         // Act
-        List<Imovel> response = useCase.executar();
+        List<Imovel> response = useCase.executar(null, null);
 
         // Assert
         assertNotNull(response);

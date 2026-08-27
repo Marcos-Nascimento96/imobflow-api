@@ -15,8 +15,13 @@ public class ListarImoveisUseCase {
         this.imovelRepository = imovelRepository;
     }
 
-    public List<Imovel> executar() {
-        return imovelRepository.listar();
+    public List<Imovel> executar(Double valorMin, Double valorMax) {
+
+        if (valorMin == null && valorMax == null) {
+            return imovelRepository.listar();
+        }
+
+        return imovelRepository.listarPorFaixaDeValor(valorMin, valorMax);
     }
 }
 
