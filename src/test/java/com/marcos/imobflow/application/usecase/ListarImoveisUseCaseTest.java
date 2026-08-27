@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.verify;
 
 public class ListarImoveisUseCaseTest {
 
@@ -69,5 +70,74 @@ public class ListarImoveisUseCaseTest {
 
         assertEquals(2L, response.get(1).getId());
         assertEquals("Casa com garagem", response.get(1).getTitulo());
+    }
+    @Test
+    void deveListarImoveisPorFaixaDeValor() {
+
+        // Arrange
+        ImovelRepository imovelRepository = mock(ImovelRepository.class);
+        ListarImoveisUseCase useCase =
+                new ListarImoveisUseCase(imovelRepository);
+
+        Double valorMin = 400000.0;
+        Double valorMax = 600000.0;
+
+        List<Imovel> imoveis = List.of(
+                new Imovel()
+        );
+
+        when(imovelRepository.listarPorFaixaDeValor(valorMin, valorMax))
+                .thenReturn(imoveis);
+
+        // Act
+        List<Imovel> response = useCase.executar(valorMin, valorMax);
+
+        // Assert
+        assertEquals(imoveis, response);
+
+        verify(imovelRepository)
+                .listarPorFaixaDeValor(valorMin, valorMax);
+    }
+
+    @Test
+    void deveListarImoveisSomenteComValorMinimo() {
+
+        // Arrange
+        ImovelRepository imovelRepository = mock(ImovelRepository.class);
+        ListarImoveisUseCase useCase =
+                new ListarImoveisUseCase(imovelRepository);
+
+        Double valorMin = 400000.0;
+
+        when(imovelRepository.listarPorFaixaDeValor(valorMin, null))
+                .thenReturn(List.of());
+
+        // Act
+        useCase.executar(valorMin, null);
+
+        // Assert
+        verify(imovelRepository)
+                .listarPorFaixaDeValor(valorMin, null);
+    }
+
+    @Test
+    void deveListarImoveisSomenteComValorMaximo() {
+
+        // Arrange
+        ImovelRepository imovelRepository = mock(ImovelRepository.class);
+        ListarImoveisUseCase useCase =
+                new ListarImoveisUseCase(imovelRepository);
+
+        Double valorMax = 600000.0;
+
+        when(imovelRepository.listarPorFaixaDeValor(null, valorMax))
+                .thenReturn(List.of());
+
+        // Act
+        useCase.executar(null, valorMax);
+
+        // Assert
+        verify(imovelRepository)
+                .listarPorFaixaDeValor(null, valorMax);
     }
 }
