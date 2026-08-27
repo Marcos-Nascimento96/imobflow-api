@@ -13,6 +13,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -54,8 +55,11 @@ public class ImovelController {
     }
 
     @GetMapping
-    public List<Imovel> listar() {
-        return listarImoveisUseCase.executar();
+    public List<Imovel> listar(
+            @RequestParam(required = false) Double valorMin,
+            @RequestParam(required = false) Double valorMax
+    ) {
+        return listarImoveisUseCase.executar(valorMin, valorMax);
     }
 
     @GetMapping("/{id}")
