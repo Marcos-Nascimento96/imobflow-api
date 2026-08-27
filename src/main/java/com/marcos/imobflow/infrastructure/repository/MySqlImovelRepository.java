@@ -28,6 +28,11 @@ public class MySqlImovelRepository implements ImovelRepository {
     }
 
     @Override
+    public List<Imovel> listarPorFaixaDeValor(Double valorMin, Double valorMax) {
+        return jpaImovelRepository.buscarPorFaixaDeValor(valorMin, valorMax);
+    }
+
+    @Override
     public Imovel buscarPorId(Long id) {
         return jpaImovelRepository.findById(id).orElse(null);
     }

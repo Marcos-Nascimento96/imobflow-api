@@ -10,6 +10,8 @@ public interface ImovelRepository {
 
     List<Imovel> listar();
 
+    List<Imovel> listarPorFaixaDeValor(Double valorMin, Double valorMax);
+
     Imovel buscarPorId(Long id);
 
     void deletarPorId(Long id);
