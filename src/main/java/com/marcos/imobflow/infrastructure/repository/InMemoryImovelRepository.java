@@ -32,6 +32,19 @@ public class InMemoryImovelRepository implements ImovelRepository {
     }
 
     @Override
+    public List<Imovel> listarPorFiltros(
+            Double valorMin,
+            Double valorMax,
+            String cidade
+    ) {
+        return imoveis.stream()
+                .filter(imovel -> cidade == null || imovel.getCidade().equalsIgnoreCase(cidade))
+                .filter(imovel -> valorMin == null || imovel.getValor() >= valorMin)
+                .filter(imovel -> valorMax == null || imovel.getValor() <= valorMax)
+                .toList();
+    }
+
+    @Override
     public Imovel buscarPorId(Long id) {
         return imoveis.stream()
                 .filter(imovel -> imovel.getId() != null && imovel.getId().equals(id))

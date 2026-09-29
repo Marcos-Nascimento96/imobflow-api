@@ -4,6 +4,7 @@ import com.marcos.imobflow.domain.model.Imovel;
 import com.marcos.imobflow.domain.repository.ImovelRepository;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.domain.Specification;
 
 import java.util.List;
 
@@ -30,6 +31,29 @@ public class MySqlImovelRepository implements ImovelRepository {
     @Override
     public List<Imovel> listarPorFaixaDeValor(Double valorMin, Double valorMax) {
         return jpaImovelRepository.buscarPorFaixaDeValor(valorMin, valorMax);
+    }
+
+    @Override
+    public List<Imovel> listarPorFiltros(
+            Double valorMin,
+            Double valorMax,
+            String cidade
+    ) {
+        Specification<Imovel> spec = Specification.unrestricted();
+
+        if (cidade != null) {
+            spec = spec.and(ImovelSpecification.cidadeIgual(cidade));
+        }
+
+        if (valorMin != null) {
+            spec = spec.and(ImovelSpecification.valorMaiorOuIgual(valorMin));
+        }
+
+        if (valorMax != null) {
+            spec = spec.and(ImovelSpecification.valorMenorOuIgual(valorMax));
+        }
+
+        return jpaImovelRepository.findAll(spec);
     }
 
     @Override
