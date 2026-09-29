@@ -12,6 +12,12 @@ public interface ImovelRepository {
 
     List<Imovel> listarPorFaixaDeValor(Double valorMin, Double valorMax);
 
+    List<Imovel> listarPorFiltros(
+            Double valorMin,
+            Double valorMax,
+            String cidade
+    );
+
     Imovel buscarPorId(Long id);
 
     void deletarPorId(Long id);

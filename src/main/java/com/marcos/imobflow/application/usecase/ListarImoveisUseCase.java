@@ -1,5 +1,6 @@
 package com.marcos.imobflow.application.usecase;
 
+import com.marcos.imobflow.application.dto.ImovelFiltro;
 import com.marcos.imobflow.domain.model.Imovel;
 import com.marcos.imobflow.domain.repository.ImovelRepository;
 import org.springframework.stereotype.Service;
@@ -15,13 +16,18 @@ public class ListarImoveisUseCase {
         this.imovelRepository = imovelRepository;
     }
 
-    public List<Imovel> executar(Double valorMin, Double valorMax) {
+    public List<Imovel> executar(ImovelFiltro filtro) {
 
-        if (valorMin == null && valorMax == null) {
+        if (filtro.getValorMin() == null
+                && filtro.getValorMax() == null
+                && filtro.getCidade() == null) {
             return imovelRepository.listar();
         }
 
-        return imovelRepository.listarPorFaixaDeValor(valorMin, valorMax);
+        return imovelRepository.listarPorFiltros(
+                filtro.getValorMin(),
+                filtro.getValorMax(),
+                filtro.getCidade()
+        );
     }
 }
-

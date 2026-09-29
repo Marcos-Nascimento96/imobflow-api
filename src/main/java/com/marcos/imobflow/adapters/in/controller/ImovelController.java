@@ -2,16 +2,15 @@ package com.marcos.imobflow.adapters.in.controller;
 
 import com.marcos.imobflow.application.dto.CreateImovelRequest;
 import com.marcos.imobflow.application.dto.CreateImovelResponse;
+import com.marcos.imobflow.application.dto.ImovelFiltro;
 import com.marcos.imobflow.application.usecase.CadastrarImovelUseCase;
 import com.marcos.imobflow.application.usecase.ListarImoveisUseCase;
 import com.marcos.imobflow.domain.model.Imovel;
 import com.marcos.imobflow.application.usecase.BuscarImovelPorIdUseCase;
 import com.marcos.imobflow.application.usecase.DeletarImovelPorIdUseCase;
 import com.marcos.imobflow.application.usecase.AtualizarImovelPorIdUseCase;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.PositiveOrZero;
+
+
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -57,9 +56,12 @@ public class ImovelController {
     @GetMapping
     public List<Imovel> listar(
             @RequestParam(required = false) Double valorMin,
-            @RequestParam(required = false) Double valorMax
+            @RequestParam(required = false) Double valorMax,
+            @RequestParam(required = false) String cidade
     ) {
-        return listarImoveisUseCase.executar(valorMin, valorMax);
+        ImovelFiltro filtro = new ImovelFiltro(valorMin, valorMax, cidade);
+
+        return listarImoveisUseCase.executar(filtro);
     }
 
     @GetMapping("/{id}")

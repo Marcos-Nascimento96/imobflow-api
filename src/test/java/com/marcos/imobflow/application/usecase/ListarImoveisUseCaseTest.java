@@ -2,7 +2,9 @@ package com.marcos.imobflow.application.usecase;
 
 import com.marcos.imobflow.domain.model.Imovel;
 import com.marcos.imobflow.domain.repository.ImovelRepository;
+import com.marcos.imobflow.application.dto.ImovelFiltro;
 import org.junit.jupiter.api.Test;
+
 
 import java.util.List;
 
@@ -59,7 +61,9 @@ public class ListarImoveisUseCaseTest {
                 .thenReturn(List.of(imovel1, imovel2));
 
         // Act
-        List<Imovel> response = useCase.executar(null, null);
+        ImovelFiltro filtro = new ImovelFiltro(null, null, null);
+
+        List<Imovel> response = useCase.executar(filtro);
 
         // Assert
         assertNotNull(response);
@@ -86,17 +90,18 @@ public class ListarImoveisUseCaseTest {
                 new Imovel()
         );
 
-        when(imovelRepository.listarPorFaixaDeValor(valorMin, valorMax))
+        when(imovelRepository.listarPorFiltros(valorMin, valorMax, null))
                 .thenReturn(imoveis);
 
         // Act
-        List<Imovel> response = useCase.executar(valorMin, valorMax);
+        ImovelFiltro filtro = new ImovelFiltro(valorMin, valorMax, null);
+        List<Imovel> response = useCase.executar(filtro);
 
         // Assert
         assertEquals(imoveis, response);
 
         verify(imovelRepository)
-                .listarPorFaixaDeValor(valorMin, valorMax);
+                .listarPorFiltros(valorMin, valorMax, null);
     }
 
     @Test
@@ -109,15 +114,16 @@ public class ListarImoveisUseCaseTest {
 
         Double valorMin = 400000.0;
 
-        when(imovelRepository.listarPorFaixaDeValor(valorMin, null))
+        when(imovelRepository.listarPorFiltros(valorMin, null, null))
                 .thenReturn(List.of());
 
         // Act
-        useCase.executar(valorMin, null);
+        ImovelFiltro filtro = new ImovelFiltro(valorMin, null, null);
+        useCase.executar(filtro);
 
         // Assert
         verify(imovelRepository)
-                .listarPorFaixaDeValor(valorMin, null);
+                .listarPorFiltros(valorMin, null, null);
     }
 
     @Test
@@ -130,14 +136,47 @@ public class ListarImoveisUseCaseTest {
 
         Double valorMax = 600000.0;
 
-        when(imovelRepository.listarPorFaixaDeValor(null, valorMax))
+        when(imovelRepository.listarPorFiltros(null, valorMax, null))
                 .thenReturn(List.of());
 
         // Act
-        useCase.executar(null, valorMax);
+        ImovelFiltro filtro = new ImovelFiltro(null, valorMax, null);
+        useCase.executar(filtro);
 
         // Assert
         verify(imovelRepository)
-                .listarPorFaixaDeValor(null, valorMax);
+                .listarPorFiltros(null, valorMax, null);
+    }
+
+    @Test
+    void deveListarImoveisComCidadeEFaixaDeValor() {
+
+        // Arrange
+        ImovelRepository imovelRepository = mock(ImovelRepository.class);
+        ListarImoveisUseCase useCase =
+                new ListarImoveisUseCase(imovelRepository);
+
+        Double valorMin = 400000.0;
+        Double valorMax = 600000.0;
+        String cidade = "SBC";
+
+        Imovel imovel = new Imovel();
+
+        List<Imovel> imoveis = List.of(imovel);
+
+        when(imovelRepository.listarPorFiltros(valorMin, valorMax, cidade))
+                .thenReturn(imoveis);
+
+        ImovelFiltro filtro =
+                new ImovelFiltro(valorMin, valorMax, cidade);
+
+        // Act
+        List<Imovel> response = useCase.executar(filtro);
+
+        // Assert
+        assertEquals(imoveis, response);
+
+        verify(imovelRepository)
+                .listarPorFiltros(valorMin, valorMax, cidade);
     }
 }
