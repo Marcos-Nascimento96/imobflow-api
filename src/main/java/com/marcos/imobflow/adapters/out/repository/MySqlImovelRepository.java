@@ -1,15 +1,13 @@
-package com.marcos.imobflow.infrastructure.repository;
+package com.marcos.imobflow.adapters.out.repository;
 
 import com.marcos.imobflow.domain.model.Imovel;
 import com.marcos.imobflow.domain.repository.ImovelRepository;
-import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-@Primary
 public class MySqlImovelRepository implements ImovelRepository {
 
     private final JpaImovelRepository jpaImovelRepository;
@@ -20,17 +18,13 @@ public class MySqlImovelRepository implements ImovelRepository {
 
     @Override
     public Imovel salvar(Imovel imovel) {
-        return jpaImovelRepository.save(imovel);
+        ImovelEntity entitySalva = jpaImovelRepository.save(ImovelEntityMapper.toEntity(imovel));
+        return ImovelEntityMapper.toDomain(entitySalva);
     }
 
     @Override
     public List<Imovel> listar() {
-        return jpaImovelRepository.findAll();
-    }
-
-    @Override
-    public List<Imovel> listarPorFaixaDeValor(Double valorMin, Double valorMax) {
-        return jpaImovelRepository.buscarPorFaixaDeValor(valorMin, valorMax);
+        return toDomainList(jpaImovelRepository.findAll());
     }
 
     @Override
@@ -39,7 +33,7 @@ public class MySqlImovelRepository implements ImovelRepository {
             Double valorMax,
             String cidade
     ) {
-        Specification<Imovel> spec = Specification.unrestricted();
+        Specification<ImovelEntity> spec = Specification.unrestricted();
 
         if (cidade != null) {
             spec = spec.and(ImovelSpecification.cidadeIgual(cidade));
@@ -53,12 +47,14 @@ public class MySqlImovelRepository implements ImovelRepository {
             spec = spec.and(ImovelSpecification.valorMenorOuIgual(valorMax));
         }
 
-        return jpaImovelRepository.findAll(spec);
+        return toDomainList(jpaImovelRepository.findAll(spec));
     }
 
     @Override
     public Imovel buscarPorId(Long id) {
-        return jpaImovelRepository.findById(id).orElse(null);
+        return jpaImovelRepository.findById(id)
+                .map(ImovelEntityMapper::toDomain)
+                .orElse(null);
     }
 
     @Override
@@ -68,6 +64,13 @@ public class MySqlImovelRepository implements ImovelRepository {
 
     @Override
     public Imovel atualizar(Imovel imovel) {
-        return jpaImovelRepository.save(imovel);
+        ImovelEntity entityAtualizada = jpaImovelRepository.save(ImovelEntityMapper.toEntity(imovel));
+        return ImovelEntityMapper.toDomain(entityAtualizada);
+    }
+
+    private List<Imovel> toDomainList(List<ImovelEntity> entities) {
+        return entities.stream()
+                .map(ImovelEntityMapper::toDomain)
+                .toList();
     }
 }

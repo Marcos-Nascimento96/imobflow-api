@@ -10,8 +10,6 @@ public interface ImovelRepository {
 
     List<Imovel> listar();
 
-    List<Imovel> listarPorFaixaDeValor(Double valorMin, Double valorMax);
-
     List<Imovel> listarPorFiltros(
             Double valorMin,
             Double valorMax,

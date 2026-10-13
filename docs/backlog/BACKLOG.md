@@ -21,7 +21,7 @@ Este documento é a fonte única da verdade para o andamento das histórias de u
 | ID | Épico | Título da História | Dependências | Status | Conceitos Técnicos Estudados |
 | :---: | :--- | :--- | :---: | :---: | :--- |
 | **US-000** | Épico 0: Fundação | Setup de Governança, `AGENTS.md`, Skills e Rastreabilidade | Nenhuma | 🟣 `EM_VALIDACAO` | Governança de IA, Antigravity Customizations/Skills, SDD, Git. |
-| **US-001** | Épico 0: Fundação | Padronização Hexagonal e Limpeza de Artefatos | US-000 | ⚪ `BACKLOG` | Arquitetura Hexagonal, Ports & Adapters, Refatoração segura. |
+| **US-001** | Épico 0: Fundação | Padronização Hexagonal e Limpeza de Artefatos | US-000 | 🟢 `CONCLUIDA` | Arquitetura Hexagonal, Ports & Adapters, Refatoração segura. |
 | **US-002** | Épico 0: Fundação | Migrações de Banco com Flyway & Testcontainers MySQL | US-001 | ⚪ `BACKLOG` | Versionamento de banco (Flyway), Testcontainers, `@DataJpaTest`. |
 | **US-003** | Épico 1: Core Imóveis | Tipagem Rica com Enums no Domínio Imóvel | US-002 | ⚪ `BACKLOG` | Domain-Driven Design (Enums ricos), Bean Validation, Jackson. |
 | **US-004** | Épico 1: Core Imóveis | Paginação e Ordenação na Listagem de Imóveis | US-003 | ⚪ `BACKLOG` | `Pageable`, `Page<T>` no Spring Data, queries paginadas. |
