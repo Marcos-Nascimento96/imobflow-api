@@ -55,7 +55,7 @@ Todas as dependências de código apontam para o centro (em direção ao domíni
 ```
 
 * **`domain`:** Não importa nada de `application`, `adapters`, `infrastructure` ou bibliotecas do Spring.
-* **`application`:** Importa apenas `domain`. Conhece as portas, mas não conhece implementações concretas (ex: não sabe se os dados vêm de MySQL ou memória).
+* **`application`:** Depende do `domain` e de elementos internos da própria camada. Conhece as portas, mas não conhece implementações concretas (ex: não sabe se os dados vêm de MySQL ou memória). No baseline atual, são permitidos exclusivamente `org.springframework.stereotype.Service` nos casos de uso e `jakarta.validation` nos DTOs de entrada. Essas permissões são explícitas e restritas: não autorizam dependências da aplicação em Spring Web, Spring Data, Spring Security, Jakarta Persistence, `adapters` ou `config`. Qualquer ampliação exige decisão arquitetural própria.
 * **`adapters.in`:** Depende apenas de `application` (use cases e DTOs).
 * **`adapters.out`:** Implementa as interfaces de `domain.repository` e utiliza infraestrutura técnica (Spring Data JPA, Hibernate, Criteria API).
 

@@ -81,3 +81,7 @@
   * [`.agents/skills/java-tdd-mentor/SKILL.md`](file:///c:/Users/MSVN9/Projeto/imobflow-api/.agents/skills/java-tdd-mentor/SKILL.md)
 * **Status da Suíte de Testes:** A suíte de código permaneceu 100% intocada, sem nenhuma modificação de código Java.
 
+### 7.1 Estado de Integração e do Portão 3
+
+Os artefatos documentais da US-000 foram integrados tecnicamente em `develop` por meio do merge `b03efc5`. Essa integração não substitui o aceite humano exigido pelo fluxo SDD. Como não há registro de aprovação formal do Portão 3, a história permanece em `EM_VALIDACAO` e não deve constar no histórico de conclusões até que esse aceite seja concedido explicitamente.
+

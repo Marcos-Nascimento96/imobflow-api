@@ -22,7 +22,8 @@ Este documento é a fonte única da verdade para o andamento das histórias de u
 | :---: | :--- | :--- | :---: | :---: | :--- |
 | **US-000** | Épico 0: Fundação | Setup de Governança, `AGENTS.md`, Skills e Rastreabilidade | Nenhuma | 🟣 `EM_VALIDACAO` | Governança de IA, Antigravity Customizations/Skills, SDD, Git. |
 | **US-001** | Épico 0: Fundação | Padronização Hexagonal e Limpeza de Artefatos | US-000 | 🟢 `CONCLUIDA` | Arquitetura Hexagonal, Ports & Adapters, Refatoração segura. |
-| **US-002** | Épico 0: Fundação | Migrações de Banco com Flyway & Testcontainers MySQL | US-001 | ⚪ `BACKLOG` | Versionamento de banco (Flyway), Testcontainers, `@DataJpaTest`. |
+| **TECH-001** | Épico 0: Fundação | Guardrails Arquiteturais Automatizados com ArchUnit | US-001 | 🟢 `CONCLUIDA` | ArchUnit, testes arquiteturais, fitness functions, dependências entre camadas. |
+| **US-002** | Épico 0: Fundação | Migrações de Banco com Flyway & Testcontainers MySQL | US-001, TECH-001 | ⚪ `BACKLOG` | Versionamento de banco (Flyway), Testcontainers, `@DataJpaTest`. |
 | **US-003** | Épico 1: Core Imóveis | Tipagem Rica com Enums no Domínio Imóvel | US-002 | ⚪ `BACKLOG` | Domain-Driven Design (Enums ricos), Bean Validation, Jackson. |
 | **US-004** | Épico 1: Core Imóveis | Paginação e Ordenação na Listagem de Imóveis | US-003 | ⚪ `BACKLOG` | `Pageable`, `Page<T>` no Spring Data, queries paginadas. |
 | **US-005** | Épico 1: Core Imóveis | Documentação Viva da API com OpenAPI / Swagger | US-004 | ⚪ `BACKLOG` | OpenAPI 3, `springdoc-openapi`, Swagger UI, contratos REST. |
@@ -44,4 +45,5 @@ Este documento é a fonte única da verdade para o andamento das histórias de u
 
 | ID | Data de Conclusão | Descrição Resumida da Entrega |
 | :---: | :---: | :--- |
-| *Nenhuma história concluída ainda* | - | - |
+| **US-001** | 13/10/2026 | Padronização dos adaptadores hexagonais, isolamento entre domínio e JPA, proteção da API com DTOs e integração em `develop`. |
+| **TECH-001** | 14/10/2026 | Guardrails arquiteturais automatizados com ArchUnit, comprovação Red/Green e suíte completa com 47 testes aprovados. |

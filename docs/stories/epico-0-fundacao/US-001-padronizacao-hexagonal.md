@@ -252,4 +252,6 @@ Todos os contratos JSON existentes serão **100% preservados**, sem nenhuma alte
 
 ### 7.5 Estado do Portão 3
 
-Implementação e evidências preparadas em 13/10/2026. O aceite final do desenvolvedor foi concedido em 13/10/2026, concluindo o Portão 3 e autorizando o fechamento documental e o commit da US-001. A publicação da branch e a integração permanecem condicionadas a autorização posterior.
+Implementação e evidências preparadas em 13/10/2026. O aceite final do desenvolvedor foi concedido em 13/10/2026, concluindo o Portão 3 e autorizando o fechamento documental e o commit da US-001. A entrega foi posteriormente integrada em `develop` pelo commit `a70c799` e está registrada no histórico de conclusões do backlog.
+
+A dependência documental da US-001 em relação à US-000 é preservada. Os artefatos técnicos e de governança necessários estavam disponíveis durante a execução, embora o fechamento administrativo do Portão 3 da US-000 permaneça pendente; essa pendência não deve ser interpretada como conclusão implícita da US-000.
