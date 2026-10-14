@@ -1,5 +1,6 @@
 package com.marcos.imobflow.application.usecase;
 
+import com.marcos.imobflow.application.dto.ImovelResponse;
 import com.marcos.imobflow.application.exception.ImovelNotFoundException;
 import com.marcos.imobflow.domain.model.Imovel;
 import com.marcos.imobflow.domain.repository.ImovelRepository;
@@ -14,13 +15,13 @@ public class BuscarImovelPorIdUseCase {
         this.imovelRepository = imovelRepository;
     }
 
-    public Imovel executar(Long id) {
+    public ImovelResponse executar(Long id) {
         Imovel imovel = imovelRepository.buscarPorId(id);
 
         if (imovel == null) {
             throw new ImovelNotFoundException();
         }
 
-        return imovel;
+        return ImovelResponse.fromDomain(imovel);
     }
 }

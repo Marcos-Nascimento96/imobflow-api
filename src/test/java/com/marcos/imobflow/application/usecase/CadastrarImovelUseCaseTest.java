@@ -1,7 +1,7 @@
 package com.marcos.imobflow.application.usecase;
 
 import com.marcos.imobflow.application.dto.CreateImovelRequest;
-import com.marcos.imobflow.application.dto.CreateImovelResponse;
+import com.marcos.imobflow.application.dto.ImovelResponse;
 import com.marcos.imobflow.domain.model.Imovel;
 import com.marcos.imobflow.domain.repository.ImovelRepository;
 import org.junit.jupiter.api.Test;
@@ -54,21 +54,21 @@ public class CadastrarImovelUseCaseTest {
         when(imovelRepository.salvar(any(Imovel.class))).thenReturn(imovelSalvo);
 
         // Act
-        CreateImovelResponse response = useCase.executar(request);
+        ImovelResponse response = useCase.executar(request);
 
         // Assert
-        assertEquals(1L, response.getId());
-        assertEquals("Apartamento no Centro", response.getTitulo());
-        assertEquals("Apartamento bem localizado", response.getDescricao());
-        assertEquals("São Bernardo do Campo", response.getCidade());
-        assertEquals("Centro", response.getBairro());
-        assertEquals("Rua das Flores, 100", response.getEndereco());
-        assertEquals(450000.0, response.getValor());
-        assertEquals("VENDA", response.getTipoNegociacao());
-        assertEquals("APARTAMENTO", response.getTipoImovel());
-        assertEquals(2, response.getQuartos());
-        assertEquals(1, response.getBanheiros());
-        assertEquals(1, response.getVagasGaragem());
-        assertEquals(65.5, response.getAreaM2());
+        assertEquals(1L, response.id());
+        assertEquals("Apartamento no Centro", response.titulo());
+        assertEquals("Apartamento bem localizado", response.descricao());
+        assertEquals("São Bernardo do Campo", response.cidade());
+        assertEquals("Centro", response.bairro());
+        assertEquals("Rua das Flores, 100", response.endereco());
+        assertEquals(450000.0, response.valor());
+        assertEquals("VENDA", response.tipoNegociacao());
+        assertEquals("APARTAMENTO", response.tipoImovel());
+        assertEquals(2, response.quartos());
+        assertEquals(1, response.banheiros());
+        assertEquals(1, response.vagasGaragem());
+        assertEquals(65.5, response.areaM2());
     }
 }

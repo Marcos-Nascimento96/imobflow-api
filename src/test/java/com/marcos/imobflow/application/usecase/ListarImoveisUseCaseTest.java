@@ -1,18 +1,18 @@
 package com.marcos.imobflow.application.usecase;
 
+import com.marcos.imobflow.application.dto.ImovelFiltro;
+import com.marcos.imobflow.application.dto.ImovelResponse;
 import com.marcos.imobflow.domain.model.Imovel;
 import com.marcos.imobflow.domain.repository.ImovelRepository;
-import com.marcos.imobflow.application.dto.ImovelFiltro;
 import org.junit.jupiter.api.Test;
-
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class ListarImoveisUseCaseTest {
 
@@ -21,9 +21,7 @@ public class ListarImoveisUseCaseTest {
 
         // Arrange
         ImovelRepository imovelRepository = mock(ImovelRepository.class);
-
-        ListarImoveisUseCase useCase =
-                new ListarImoveisUseCase(imovelRepository);
+        ListarImoveisUseCase useCase = new ListarImoveisUseCase(imovelRepository);
 
         Imovel imovel1 = new Imovel(
                 1L,
@@ -57,51 +55,41 @@ public class ListarImoveisUseCaseTest {
                 120.0
         );
 
-        when(imovelRepository.listar())
-                .thenReturn(List.of(imovel1, imovel2));
+        when(imovelRepository.listar()).thenReturn(List.of(imovel1, imovel2));
 
         // Act
         ImovelFiltro filtro = new ImovelFiltro(null, null, null);
-
-        List<Imovel> response = useCase.executar(filtro);
+        List<ImovelResponse> response = useCase.executar(filtro);
 
         // Assert
         assertNotNull(response);
         assertEquals(2, response.size());
-
-        assertEquals(1L, response.get(0).getId());
-        assertEquals("Apartamento no Centro", response.get(0).getTitulo());
-
-        assertEquals(2L, response.get(1).getId());
-        assertEquals("Casa com garagem", response.get(1).getTitulo());
+        assertEquals(1L, response.get(0).id());
+        assertEquals("Apartamento no Centro", response.get(0).titulo());
+        assertEquals(2L, response.get(1).id());
+        assertEquals("Casa com garagem", response.get(1).titulo());
     }
+
     @Test
     void deveListarImoveisPorFaixaDeValor() {
 
         // Arrange
         ImovelRepository imovelRepository = mock(ImovelRepository.class);
-        ListarImoveisUseCase useCase =
-                new ListarImoveisUseCase(imovelRepository);
+        ListarImoveisUseCase useCase = new ListarImoveisUseCase(imovelRepository);
 
         Double valorMin = 400000.0;
         Double valorMax = 600000.0;
 
-        List<Imovel> imoveis = List.of(
-                new Imovel()
-        );
-
         when(imovelRepository.listarPorFiltros(valorMin, valorMax, null))
-                .thenReturn(imoveis);
+                .thenReturn(List.of(new Imovel()));
 
         // Act
         ImovelFiltro filtro = new ImovelFiltro(valorMin, valorMax, null);
-        List<Imovel> response = useCase.executar(filtro);
+        List<ImovelResponse> response = useCase.executar(filtro);
 
         // Assert
-        assertEquals(imoveis, response);
-
-        verify(imovelRepository)
-                .listarPorFiltros(valorMin, valorMax, null);
+        assertEquals(1, response.size());
+        verify(imovelRepository).listarPorFiltros(valorMin, valorMax, null);
     }
 
     @Test
@@ -109,8 +97,7 @@ public class ListarImoveisUseCaseTest {
 
         // Arrange
         ImovelRepository imovelRepository = mock(ImovelRepository.class);
-        ListarImoveisUseCase useCase =
-                new ListarImoveisUseCase(imovelRepository);
+        ListarImoveisUseCase useCase = new ListarImoveisUseCase(imovelRepository);
 
         Double valorMin = 400000.0;
 
@@ -122,8 +109,7 @@ public class ListarImoveisUseCaseTest {
         useCase.executar(filtro);
 
         // Assert
-        verify(imovelRepository)
-                .listarPorFiltros(valorMin, null, null);
+        verify(imovelRepository).listarPorFiltros(valorMin, null, null);
     }
 
     @Test
@@ -131,8 +117,7 @@ public class ListarImoveisUseCaseTest {
 
         // Arrange
         ImovelRepository imovelRepository = mock(ImovelRepository.class);
-        ListarImoveisUseCase useCase =
-                new ListarImoveisUseCase(imovelRepository);
+        ListarImoveisUseCase useCase = new ListarImoveisUseCase(imovelRepository);
 
         Double valorMax = 600000.0;
 
@@ -144,8 +129,7 @@ public class ListarImoveisUseCaseTest {
         useCase.executar(filtro);
 
         // Assert
-        verify(imovelRepository)
-                .listarPorFiltros(null, valorMax, null);
+        verify(imovelRepository).listarPorFiltros(null, valorMax, null);
     }
 
     @Test
@@ -153,30 +137,22 @@ public class ListarImoveisUseCaseTest {
 
         // Arrange
         ImovelRepository imovelRepository = mock(ImovelRepository.class);
-        ListarImoveisUseCase useCase =
-                new ListarImoveisUseCase(imovelRepository);
+        ListarImoveisUseCase useCase = new ListarImoveisUseCase(imovelRepository);
 
         Double valorMin = 400000.0;
         Double valorMax = 600000.0;
         String cidade = "SBC";
 
-        Imovel imovel = new Imovel();
-
-        List<Imovel> imoveis = List.of(imovel);
-
         when(imovelRepository.listarPorFiltros(valorMin, valorMax, cidade))
-                .thenReturn(imoveis);
+                .thenReturn(List.of(new Imovel()));
 
-        ImovelFiltro filtro =
-                new ImovelFiltro(valorMin, valorMax, cidade);
+        ImovelFiltro filtro = new ImovelFiltro(valorMin, valorMax, cidade);
 
         // Act
-        List<Imovel> response = useCase.executar(filtro);
+        List<ImovelResponse> response = useCase.executar(filtro);
 
         // Assert
-        assertEquals(imoveis, response);
-
-        verify(imovelRepository)
-                .listarPorFiltros(valorMin, valorMax, cidade);
+        assertEquals(1, response.size());
+        verify(imovelRepository).listarPorFiltros(valorMin, valorMax, cidade);
     }
 }

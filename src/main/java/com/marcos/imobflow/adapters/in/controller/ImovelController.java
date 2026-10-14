@@ -1,15 +1,13 @@
 package com.marcos.imobflow.adapters.in.controller;
 
 import com.marcos.imobflow.application.dto.CreateImovelRequest;
-import com.marcos.imobflow.application.dto.CreateImovelResponse;
 import com.marcos.imobflow.application.dto.ImovelFiltro;
-import com.marcos.imobflow.application.usecase.CadastrarImovelUseCase;
-import com.marcos.imobflow.application.usecase.ListarImoveisUseCase;
-import com.marcos.imobflow.domain.model.Imovel;
-import com.marcos.imobflow.application.usecase.BuscarImovelPorIdUseCase;
-import com.marcos.imobflow.application.usecase.DeletarImovelPorIdUseCase;
+import com.marcos.imobflow.application.dto.ImovelResponse;
 import com.marcos.imobflow.application.usecase.AtualizarImovelPorIdUseCase;
-
+import com.marcos.imobflow.application.usecase.BuscarImovelPorIdUseCase;
+import com.marcos.imobflow.application.usecase.CadastrarImovelUseCase;
+import com.marcos.imobflow.application.usecase.DeletarImovelPorIdUseCase;
+import com.marcos.imobflow.application.usecase.ListarImoveisUseCase;
 
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,8 +18,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.GetMapping;
+
 import java.util.List;
 
 @RestController
@@ -46,26 +44,25 @@ public class ImovelController {
         this.buscarImovelPorIdUseCase = buscarImovelPorIdUseCase;
         this.deletarImovelPorIdUseCase = deletarImovelPorIdUseCase;
         this.atualizarImovelPorIdUseCase = atualizarImovelPorIdUseCase;
-        }
+    }
 
     @PostMapping
-    public CreateImovelResponse cadastrar(@Valid @RequestBody CreateImovelRequest request) {
+    public ImovelResponse cadastrar(@Valid @RequestBody CreateImovelRequest request) {
         return cadastrarImovelUseCase.executar(request);
     }
 
     @GetMapping
-    public List<Imovel> listar(
+    public List<ImovelResponse> listar(
             @RequestParam(required = false) Double valorMin,
             @RequestParam(required = false) Double valorMax,
             @RequestParam(required = false) String cidade
     ) {
         ImovelFiltro filtro = new ImovelFiltro(valorMin, valorMax, cidade);
-
         return listarImoveisUseCase.executar(filtro);
     }
 
     @GetMapping("/{id}")
-    public Imovel buscarPorId(@PathVariable Long id) {
+    public ImovelResponse buscarPorId(@PathVariable Long id) {
         return buscarImovelPorIdUseCase.executar(id);
     }
 
@@ -75,9 +72,7 @@ public class ImovelController {
     }
 
     @PutMapping("/{id}")
-    public CreateImovelResponse atualizarPorId(@PathVariable Long id,@Valid @RequestBody CreateImovelRequest request) {
+    public ImovelResponse atualizarPorId(@PathVariable Long id, @Valid @RequestBody CreateImovelRequest request) {
         return atualizarImovelPorIdUseCase.executar(id, request);
     }
-
 }
-

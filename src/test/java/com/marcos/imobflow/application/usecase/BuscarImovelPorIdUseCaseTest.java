@@ -1,5 +1,6 @@
 package com.marcos.imobflow.application.usecase;
 
+import com.marcos.imobflow.application.dto.ImovelResponse;
 import com.marcos.imobflow.application.exception.ImovelNotFoundException;
 import com.marcos.imobflow.domain.model.Imovel;
 import com.marcos.imobflow.domain.repository.ImovelRepository;
@@ -38,14 +39,14 @@ public class BuscarImovelPorIdUseCaseTest {
         when(imovelRepository.buscarPorId(1L)).thenReturn(imovel);
 
         // Act
-        Imovel response = useCase.executar(1L);
+        ImovelResponse response = useCase.executar(1L);
 
         // Assert
-        assertEquals(1L, response.getId());
-        assertEquals("Apartamento no Centro", response.getTitulo());
-        assertEquals("Apartamento bem localizado", response.getDescricao());
-        assertEquals("São Bernardo do Campo", response.getCidade());
-        assertEquals("Centro", response.getBairro());
+        assertEquals(1L, response.id());
+        assertEquals("Apartamento no Centro", response.titulo());
+        assertEquals("Apartamento bem localizado", response.descricao());
+        assertEquals("São Bernardo do Campo", response.cidade());
+        assertEquals("Centro", response.bairro());
     }
 
     @Test
